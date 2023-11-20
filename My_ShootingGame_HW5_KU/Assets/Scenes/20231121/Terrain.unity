@@ -12076,6 +12076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c510e2e376453844da52f0dec95d469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!135 &549540100
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13579,6 +13580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c510e2e376453844da52f0dec95d469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!54 &903929137
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15739,7 +15741,7 @@ PrefabInstance:
     - target: {fileID: 1463670157073777011, guid: 0d79204046abd4c49b61c1bd053f8c61,
         type: 3}
       propertyPath: m_Speed
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1463670157073777011, guid: 0d79204046abd4c49b61c1bd053f8c61,
         type: 3}

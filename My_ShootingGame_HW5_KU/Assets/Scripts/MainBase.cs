@@ -12,17 +12,20 @@ public class MainBase : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         var other = collision.collider;
-        
-        if(other.tag == "Enemy_Bullet")
+
+        if (state == baseState.Win)
         {
-            if(state == baseState.Win)
+            if (other.tag == "Bullet")
             {
                 SceneManager.LoadScene("WinScene");
             }
-            else
+        }
+        else
+        {
+            if (other.tag == "Enemy_Bullet")
             {
                 SceneManager.LoadScene("LoseScene");
             }
-        }
+        }        
     }
 }
