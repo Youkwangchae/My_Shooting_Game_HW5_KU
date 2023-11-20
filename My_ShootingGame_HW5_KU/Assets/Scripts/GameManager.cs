@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("GameManger ม฿บน.");
         }
 
-        var colliderCheck = FindObjectOfType<CharacterColliderCheck>();
-        colliderCheck.onWin.AddListener(GoToWin);
-        colliderCheck.onLose.AddListener(GoToLose);
+        //var colliderCheck = FindObjectOfType<CharacterColliderCheck>();
+        //colliderCheck.onWin.AddListener(GoToWin);
+        //colliderCheck.onLose.AddListener(GoToLose);
     }
 }

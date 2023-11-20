@@ -12,6 +12,7 @@ public class ActController : MonoBehaviour
     private int bulletNum = 0;
     public TMP_Text bullet_Text;
 
+    public float shootSpeed;
     public Transform shootPoint;
     public float speed;
     public float destoryDelay;
@@ -63,11 +64,13 @@ public class ActController : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject _enemy = Instantiate(enemy);
+        _enemy.transform.localScale = new Vector3(10, 10, 10);
         _enemy.transform.SetParent(spawnPoint);
         _enemy.transform.position = spawnPoint.position + Get_RandomPosition();        
+        //_enemy.transform.GetChild(2).GetComponent<EnemyFSM>().agent.enabled = true;
         enemyList.Add(_enemy);
 
-        Destroy(_enemy, destoryDelay);
+        //Destroy(_enemy, destoryDelay);
     }
 
     private void Shoot_Bullet()
@@ -75,11 +78,8 @@ public class ActController : MonoBehaviour
         GameObject _bullet = Instantiate(bullet[bulletNum]);
         _bullet.transform.SetParent(character.transform.parent);
         _bullet.transform.position = shootPoint.position;
-        //_bullet.transform.rotation = character.rotation;
-        var rotate = character.rotation;
-        rotate.y = -rotate.y;
-        _bullet.transform.rotation = rotate;
-        _bullet.transform.GetComponent<Rigidbody>().AddRelativeForce(0, 0, -10 * (360 - character.rotation.y)/360, ForceMode.Impulse);
+        _bullet.transform.rotation = character.rotation;
+        _bullet.transform.GetComponent<Rigidbody>().AddForce(_bullet.transform.forward * shootSpeed, ForceMode.Impulse);
 
         Destroy(_bullet, destoryDelay);
     }
@@ -112,11 +112,11 @@ public class ActController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        //character.transform.Translate(x * speed * Time.deltaTime, 0, y * speed * Time.deltaTime);
-        //rotateVec.y = x;
+        character.transform.Translate(x * speed * Time.deltaTime, 0, y * speed * Time.deltaTime);
+        rotateVec.y = x;
 
-        rb.AddRelativeForce(x * speed * Time.deltaTime, 0, y * speed * Time.deltaTime, ForceMode.Impulse);
-        rb.AddRelativeTorque(0, x * Time.deltaTime,  0, ForceMode.Impulse);
+        //rb.AddRelativeForce(x * speed * Time.deltaTime, 0, y * speed * Time.deltaTime, ForceMode.Impulse);
+        //rb.AddRelativeTorque(0, x * Time.deltaTime,  0, ForceMode.Impulse);
         MoveEnemy();
 
         character.transform.Rotate(rotateVec); 
